@@ -22,7 +22,24 @@ export const handleGetAllExpense = async(req, res) => {
 
 export const handleGetAllExpenseByUser = async(req, res) => {
     let id = req.params.id;
+    const {month, year} = req.query
     const result = await Expense.find({userId : id});
     return res.status(200).json(result);
+}
+
+export const handleGetAllExpenseByUserAndMonthAndYear = async(req, res) =>  {
+    const { userId, month, year } = req.query;
+    console.log(req.query);
+    const startDate = new Date(year, month, 1);
+    const endDate = new Date(year, month+1, 1);
+    let result = await Expense.find({
+        userId : userId,
+        date : {
+            $gte : startDate,
+            $lt : endDate
+        }
+    })
+    return res.status(200).json(result);
+    
 }
 
