@@ -16,12 +16,13 @@ export class LoginComponent {
     email : "",
     password : "",
   }
+  baseUrl = "https://expense-tracker-mzw2.onrender.com/api"
 
   http = inject(HttpClient);
   router = inject(Router);
 
   onLogin() {
-    this.http.post("http://localhost:8080/api/users/login", this.loginDetails).subscribe((res : any) => {
+    this.http.post(`${this.baseUrl}/users/login`, this.loginDetails).subscribe((res : any) => {
       // if (res.status ==)
       console.log(res);
       if (res) {

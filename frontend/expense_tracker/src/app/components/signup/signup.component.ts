@@ -12,7 +12,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class SignupComponent {
 
-  baseUrl = "http://localhost:8080/api/users"
+  baseUrl = "https://expense-tracker-mzw2.onrender.com/api"
 
   userObj:any =  {
     first_name : '',
@@ -25,7 +25,7 @@ export class SignupComponent {
   router = inject(Router)
 
   onSingup() {
-    this.http.post(this.baseUrl, this.userObj).subscribe((res : any) => {
+    this.http.post(`${this.baseUrl}/users`, this.userObj).subscribe((res : any) => {
       if (res) {
         localStorage.setItem("user", JSON.stringify(res))
         this.router.navigateByUrl('/')

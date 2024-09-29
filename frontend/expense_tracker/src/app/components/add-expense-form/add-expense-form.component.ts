@@ -15,7 +15,7 @@ export class AddExpenseFormComponent {
   @Input() isAddExpenseFormOpen!:boolean
   @Output() isAddExpenseFormOpenChange = new EventEmitter<boolean>();
 
-
+  baseUrl = "https://expense-tracker-mzw2.onrender.com/api"
 
   router = inject(Router)
     
@@ -34,7 +34,7 @@ export class AddExpenseFormComponent {
     if (user != null) {
       let LoggedInUser = JSON.parse(user);
       this.expenseObj.userId = LoggedInUser._id;
-      this.http.post("http://localhost:8080/api/expenses", this.expenseObj).subscribe((res : any) => {
+      this.http.post(`${this.baseUrl}/expenses`, this.expenseObj).subscribe((res : any) => {
         this.closeForm()
       })
     }

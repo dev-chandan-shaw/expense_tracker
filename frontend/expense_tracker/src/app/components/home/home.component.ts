@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit{
 
   expenses : [] = [];
 
+  baseUrl = "https://expense-tracker-mzw2.onrender.com/api"
+
   http = inject(HttpClient)
   
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class HomeComponent implements OnInit{
           let loggedInUser = JSON.parse(user);
           let id = loggedInUser._id;
           console.log(id);
-          this.http.get(`http://localhost:8080/api/expenses/${id}`).subscribe((res : any) => {
+          this.http.get(`${this.baseUrl}/expenses/${id}`).subscribe((res : any) => {
             this.expenses = res;
           })
         }
