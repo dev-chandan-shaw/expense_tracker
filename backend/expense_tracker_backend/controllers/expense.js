@@ -57,10 +57,16 @@ export const handleGetAllExpenseByUserAndMonthAndYear = async (req, res) => {
 export const handleGetAllExpenseByUserAndDate = async (req, res) => {
   const { id, date } = req.params;
   const startOfDay = new Date(date);
+  console.log(date);
+  
   startOfDay.setHours(0, 0, 0, 0); 
 
+  
+  
   const endOfDay = new Date(date);
   endOfDay.setHours(23, 59, 59, 999); 
+
+  console.log(startOfDay, endOfDay);
 
   const results = await Expense.find({
     userId : id,
@@ -69,5 +75,6 @@ export const handleGetAllExpenseByUserAndDate = async (req, res) => {
       $lte: endOfDay, 
     },
   });
-  return res.json({ results });
+  
+  return res.status(200).json(results);
 };
