@@ -2,11 +2,11 @@ import { Expense } from "../models/expense.js";
 
 export const handleAddExpense = async (req, res) => {
   console.log(req.body);
-  const { price, userId, note, category } = req.body;
+  const { amount, userId, note, category } = req.body;
 
   const newExpense = await Expense.create({
     userId: userId,
-    amount: price,
+    amount: amount,
     note: note,
     date: new Date(),
     category: category,
