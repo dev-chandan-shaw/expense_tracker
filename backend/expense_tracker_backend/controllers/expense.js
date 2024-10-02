@@ -19,7 +19,10 @@ export const handleAddExpense = async (req, res) => {
 export const handleGetAllExpenseByUser = async (req, res) => {
   let id = req.params.id;
   const { month, year } = req.query;
-  const result = await Expense.find({ userId: id });
+  const result = await Expense.find(
+    { userId: id },
+  )
+  .sort({_id : -1});
   return res.status(200).json(result);
 };
 
