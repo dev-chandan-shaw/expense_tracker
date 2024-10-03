@@ -97,5 +97,5 @@ export const handleGetExpense = async(req, res) => {
     _id : expenseId,
     userId : userId
   })
-  return res.status(200).json(result);
+  return res.status(200).json(result[0]);
 }
