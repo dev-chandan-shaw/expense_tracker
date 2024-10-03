@@ -88,3 +88,14 @@ export const handleGetLastTenTransaction = async(req, res) => {
   return res.status(200).json(result);
 
 }
+
+export const handleGetExpense = async(req, res) => {
+  const {userId , expenseId} = req.params
+  console.log(userId, expenseId);
+
+  const result = await Expense.find({
+    _id : expenseId,
+    userId : userId
+  })
+  return res.status(200).json(result);
+}
